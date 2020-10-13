@@ -14,9 +14,12 @@ package games.stendhal.server.maps.quests.houses;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -26,7 +29,9 @@ import org.junit.Test;
 
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -36,6 +41,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 
 public class BuyHouseChatActionTest {
@@ -100,6 +106,12 @@ public class BuyHouseChatActionTest {
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
 		chest = new StoredChest();
+
+		// Add something to the chest so we can check if it's removed after the house is bought
+		StackableItem moneyTemp = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		moneyTemp.setQuantity(10000);
+		chest.add(moneyTemp);
+
 		ados.add(chest);
 		HouseUtilities.clearCache();
 
@@ -121,6 +133,15 @@ public class BuyHouseChatActionTest {
 		action.fire(player , sentence , raiser);
 		assertThat(getReply(engine), containsString("Congratulation"));
 		assertFalse(player.isEquipped("money"));
+		
+		// Make sure the chest only has length of 3 for its contents (3 is the default, see fillChest method of action)
+		int i = 0;
+		Iterator<RPObject> chestContent = chest.getContent();
+		while(chestContent.hasNext()) {
+		    i++;
+		    chestContent.next();
+		}
+		assertEquals(i, 3);
 	}
 
 }
