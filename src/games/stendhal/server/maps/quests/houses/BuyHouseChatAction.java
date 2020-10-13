@@ -14,6 +14,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPSlot;
 import marauroa.common.game.SlotIsFullException;
 
 final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
@@ -69,9 +70,19 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 					player.drop("money", cost);
 					// remember what house they own
 					player.setQuest(questslot, itemName);
+					
+					StoredChest chest = HouseUtilities.findChest(houseportal);
+
+					// empty the chest if the owner is different
+					if (!player.getName().equals(owner)) {
+						RPSlot slot = chest.getSlot("content");
+						if (slot != null) {
+							slot.clear();
+						}
+					}
 
 					// put nice things and a helpful note in the chest
-					BuyHouseChatAction.fillChest(HouseUtilities.findChest(houseportal), houseportal.getDoorId());
+					BuyHouseChatAction.fillChest(chest, houseportal.getDoorId());
 
 					// set the time so that the taxman can start harassing the player
 					final long time = System.currentTimeMillis();
