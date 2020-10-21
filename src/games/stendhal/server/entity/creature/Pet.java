@@ -279,7 +279,7 @@ public abstract class Pet extends DomesticAnimal {
 
 		//drinking logic
 		boolean busyWithHealing = false;
-		if (getHP() < getBaseHP()) {
+		if ((getHP() < getBaseHP())&&(getHP()<100)) {
 			busyWithHealing = logicHealing();
 		}
 
@@ -370,7 +370,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	private boolean logicHealing() {
 		final Item medicine = getNearestHealItem(6);
-		if ((medicine != null)) {
+		if (medicine != null) {
 			if (nextTo(medicine)) {
 				LOGGER.debug("Pet heals");
 				drink((ConsumableItem) medicine);
