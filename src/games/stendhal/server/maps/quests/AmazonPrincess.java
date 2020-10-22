@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
@@ -131,6 +132,11 @@ npc.add(ConversationStates.ATTENDING,
 	 * Get Drink Step :
 	 * src/games/stendhal/server/maps/athor/cocktail_bar/BarmanNPC.java he
 	 * serves drinks to all, not just those with the quest
+	 * 
+	 * 
+	 * Change made to resolve coursework issue:
+	 *   I dropped the karma reward SetQuestAndModifyKarma(... , ... , 0.0).fire (previously it was set to 15.0) 
+	 *   and I added another Chat Action IncreaseXPAction(500), as per the requirement.
 	 */
 	private void bringCocktailStep() {
 		final SpeakerNPC npc = npcs.get("Princess Esclara");
@@ -153,9 +159,11 @@ npc.add(ConversationStates.ATTENDING,
 										Grammar.quantityplnoun(pieAmount, "fish pie", "") +
 										" from my cook, and this kiss, from me.");
 								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;"
-																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
+																 + System.currentTimeMillis(), 0.0).fire(player, sentence, npc);
+								
 							}
 						},
+						new IncreaseXPAction(500),
 						new InflictStatusOnNPCAction("pina colada")
 						));
 
