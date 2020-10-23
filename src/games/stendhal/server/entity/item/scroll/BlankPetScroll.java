@@ -59,6 +59,12 @@ public class BlankPetScroll extends Scroll {
 	 */
 	@Override
 	protected boolean useScroll(final Player player) {
+		
+		if (!player.hasPet()) {
+			player.sendPrivateText("Ohh you couldn't use it because your pet was already in a scroll or something º∆º");
+			return false;
+		}
+		
 		final StendhalRPZone zone = player.getZone();
 		final String petName = player.getPet().getName();
 
