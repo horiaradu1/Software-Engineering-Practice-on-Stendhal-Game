@@ -187,7 +187,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"I hope another ice cream wouldn't be greedy. Can you get me one?",
-				null);
+				new SetQuestAction(QUEST_SLOT, "offer_again"));
 
 		// player can't repeat quest
 		npc.add(ConversationStates.ATTENDING,
@@ -205,14 +205,23 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Waaaaaaaa! Where is my ice cream ....",
 				null);
 
-		// Player agrees to get the ice cream
+		// Player agrees to get the ice cream 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
-				null,
+				new NotCondition(new QuestInStateCondition(QUEST_SLOT, "offer_again")),
 				ConversationStates.ATTENDING,
 				"Thank you!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
 
+
+		// Player agrees to get the ice cream AGAIN
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "offer_again"),
+				ConversationStates.ATTENDING,
+				"Thank you!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "startagain", 2.0));
+		
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
@@ -280,6 +289,14 @@ public class IcecreamForAnnie extends AbstractQuest {
 					ConversationPhrases.GREETING_MESSAGES,
 					new GreetingMatchesNameCondition(mummyNPC.getName()), true,
 					ConversationStates.ATTENDING, "Hello again.", null);
+		
+		// player is supposed to begetting ice cream AGAIN
+		mummyNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.ICECREAM_MESSAGES,
+					new QuestInStateCondition(QUEST_SLOT, "startagain"),
+					ConversationStates.ATTENDING,
+					"Did Annie ask for another?  I suppose it's okay, as long as she can still eat her tea.",
+					new SetQuestAction(QUEST_SLOT, "mummy"));
 	}
 
 	@Override
