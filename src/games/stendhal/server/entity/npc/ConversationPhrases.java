@@ -61,6 +61,8 @@ public class ConversationPhrases {
 			"farewell", "cya", "adios");
 
 	public static final List<String> PURCHASE_MESSAGES = Arrays.asList("buy", "purchase");
+	
+	public static final List<String> ICECREAM_MESSAGES = Arrays.asList("icecream", "ice cream");
 
 	/**
 	 * Combine a string collection (list) with additional strings.
