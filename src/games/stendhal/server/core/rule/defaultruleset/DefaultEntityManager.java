@@ -147,6 +147,10 @@ public class DefaultEntityManager implements EntityManager {
 			if (!creature.verifyItems(this)) {
 				LOGGER.warn("Items dropped by creature name: " + clazz + " doesn't exists");
 			}
+			if (creature.getCreatureClass().equals("dwarf"))
+				if(creature.getLevel() < 30)
+					if (creature.getSpeed() != 0.8)
+						creature.setRPStats(creature.getHP(), creature.getAtk(), creature.getRatk(), creature.getDef(), 0.8);
 
 			classToCreature.put(clazz, creature);
 			idToClass.put(id, clazz);
