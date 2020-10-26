@@ -201,3 +201,17 @@ Notable contributors:
 - SnowFlake
   · Maps maker
   · NPCs
+- Andrii Perehuda
+  · bug fixer
+- Jovan Petreski
+  · bug fixer
+- Jingxuan Chen
+  · bug fixer
+- Horia Radu
+  · bug fixer
+- Amish Shah 
+  · bug fixer
+- Anna Peake 
+  · bug fixer
+- Kalina Shkenderova  
+  · bug fixer

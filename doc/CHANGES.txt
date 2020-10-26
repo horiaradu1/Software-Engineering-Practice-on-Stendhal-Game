@@ -2,6 +2,29 @@ Changelog
 ---------
 ---------
 
+
+1.35uom
+26.10.2020
+*bug fixes*
+- Dwarves and Dwarf guardians significantly slower than other dwarves
+  - all dwarfs under level 30 are now travelling with speed of 0.8
+- clear chest when house resold or reclaimed
+  - Refactored BuyHouseChatAction to empty the house's chest before a user becomes the new owner	
+- princess Esclara Quest not worth the trouble
+  - Player now gets +500XP after completing Amazon Princess Quest instead of 15 Karma benefit. 
+- Annoying NPC dialogue in Ice Cream quest
+  - Changed the IcecreamForAnnie java class so that Ms Jones' behaviour changes after you complete
+    the quest for the first time. In order to do that I also changed the ConversationPhrases class
+    by adding a new phrase.
+- Blank Pet Scrolls Disappearing!
+  - made a change in /stendhal/src/games/stendhal/server/entity/item/scroll/BlankPetScroll.java, 
+    add a 'if' structure about useScroll() function, which can make it more accurate about when 
+    should the player use his  blank pet scroll, and also add a JUnit test to recheck.
+- Potion Guzzling Pets - Make it Stop
+  - Changed Pet class logic function so pet only uses a healing potion if it has over 100 HP.
+- Typo in new chef dialogue
+  - Fixed the typo (Denirn -> Deniran) for chef Patrick in Deniran Bakery.
+
 1.35
 
 *world*
