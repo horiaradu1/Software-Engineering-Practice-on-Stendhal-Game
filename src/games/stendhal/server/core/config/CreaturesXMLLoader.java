@@ -394,6 +394,11 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			if (statusAttack != null) {
 			    creature.setStatusAttack(statusAttack, statusAttackProbability);
 			}
+			
+			if (creature.getCreatureClass().equals("dwarf"))
+				if(creature.getLevel() < 30)
+					if (creature.getSpeed() != 0.8)
+						creature.setRPStats(creature.getHP(), creature.getAtk(), creature.getRatk(), creature.getDef(), 0.8);
 
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
