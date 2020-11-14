@@ -72,11 +72,12 @@ public class WandOfSluggishnessTest {
 		player.equip("lhand", item);
 		StendhalRPAction.startAttack(player, victim);
 		StendhalRPAction.playerAttack(player, victim);
+		StendhalRPAction.playerAttack(player, victim);
+		player.stopAttack();
 		
 		StatusType statusType = StatusType.HEAVY;
 		
-		assertTrue(victim.hasStatus(statusType));
-		player.stopAttack();
+		assertTrue("", victim.getStatusList().hasStatus(statusType));
 		
 		zone.remove(player);
 		zone.remove(victim);
@@ -102,12 +103,15 @@ public class WandOfSluggishnessTest {
 		Item item = SingletonRepository.getEntityManager().getItem("wandOfSluggishness");
 		
 		player.equip("lhand", item);
+		
 		StendhalRPAction.startAttack(player, cvictim);
+		StendhalRPAction.playerAttack(player, cvictim);
 		StendhalRPAction.playerAttack(player, cvictim);
 		
 		StatusType statusType = StatusType.HEAVY;
 		
-		assertTrue(cvictim.hasStatus(statusType));
+		assertTrue("", cvictim.getStatusList().hasStatus(statusType));
+
 		player.stopAttack();
 		
 		zone.remove(player);
