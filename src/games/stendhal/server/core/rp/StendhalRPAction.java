@@ -47,6 +47,8 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.HeavyStatus;
+import games.stendhal.server.entity.status.HeavyStatusHandler;
 import games.stendhal.server.events.AttackEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.TransferContent;
@@ -431,6 +433,11 @@ public class StendhalRPAction {
 
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, isRanged));
 			player.notifyWorldAboutChanges();
+			
+			// slow down is wand is used
+			if (attackWeapon != null && attackWeapon.getName().equals("wandOfSluggishness")) {
+				new HeavyStatusHandler().inflict(new HeavyStatus(), defender.getStatusList(), player);
+			}
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
@@ -442,8 +449,11 @@ public class StendhalRPAction {
 		if (isRanged) {
 			// Removing the missile is deferred here so that the weapon
 			// information is available when calculating the damage.
-			useMissile(player);
+			if (!(attackWeapon != null && attackWeapon.getName().equals("wandOfSluggishness")))
+				useMissile(player);
 		}
+		
+		
 
 		player.notifyWorldAboutChanges();
 
