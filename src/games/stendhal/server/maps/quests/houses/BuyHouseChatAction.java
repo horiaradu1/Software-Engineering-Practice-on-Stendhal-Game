@@ -122,6 +122,9 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 			item = SingletonRepository.getEntityManager().getItem("chocolate bar");
 			((StackableItem) item).setQuantity(2);
 			chest.add(item);
+
+			item = SingletonRepository.getEntityManager().getItem("watering can");
+			chest.add(item);
 		} catch (SlotIsFullException e) {
 			Logger.getLogger(BuyHouseChatAction.class).info("Could not add " + item.getName() + " to chest in " + id, e);
 		}

@@ -134,14 +134,14 @@ public class BuyHouseChatActionTest {
 		assertThat(getReply(engine), containsString("Congratulation"));
 		assertFalse(player.isEquipped("money"));
 		
-		// Make sure the chest only has length of 3 for its contents (3 is the default, see fillChest method of action)
+		// Make sure the chest only has length of 4 for its contents (4 is the default, see fillChest method of action)
 		int i = 0;
 		Iterator<RPObject> chestContent = chest.getContent();
 		while(chestContent.hasNext()) {
 		    i++;
 		    chestContent.next();
 		}
-		assertEquals(i, 3);
+		assertEquals(i, 4);
 	}
 
 }
