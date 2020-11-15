@@ -24,6 +24,7 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.area.FlowerPot;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -62,6 +63,30 @@ public class SeedTest {
 
 	}
 
+	/**
+	 * Tests to make sure seed cannot be planted in a flower pot unless the user has a watering can.
+	 */
+	@Test
+	public void testFlowerPot() {
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+
+		final FlowerPot flowerPot = new FlowerPot();
+		zone.add(flowerPot);
+		flowerPot.setPosition(1, 0);
+		
+		assertNotNull(seed);
+		zone.add(seed);
+		seed.setPosition(1, 0);
+
+		assertFalse(seed.onUsed(player));
+		assertFalse(player.getZone().getEntityAt(1, 0) instanceof FlowerGrower);
+	}
+	
 
 	/**
 	 * Tests for executeSeedInBag.
