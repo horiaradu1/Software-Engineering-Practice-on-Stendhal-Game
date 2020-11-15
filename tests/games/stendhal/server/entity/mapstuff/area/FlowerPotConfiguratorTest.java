@@ -87,4 +87,21 @@ public class FlowerPotConfiguratorTest {
 		assertEquals(45, flowerPots.get(0).getX());
 		assertEquals(52, flowerPots.get(0).getY());
 	}
+	
+	/**
+	 * Tests for trying to place multiple flower pots in the same position (should only place one)
+	 */
+	@Test
+	public void testManyFlowerPot() {
+		assertEquals(0, getFlowerPots(zone).size());
+		
+		configurator.configureZone(zone, createAttributes(46, 52));
+		configurator.configureZone(zone, createAttributes(46, 52));
+
+		List<Entity> flowerPots = getFlowerPots(zone);
+		assertEquals(1, flowerPots.size());
+		assertTrue(flowerPots.get(0) instanceof FlowerPot);
+		assertEquals(46, flowerPots.get(0).getX());
+		assertEquals(52, flowerPots.get(0).getY());
+	}
 }
