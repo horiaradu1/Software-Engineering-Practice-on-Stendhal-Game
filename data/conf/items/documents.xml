@@ -195,5 +195,21 @@
       <slot name="rhand"/>
     </equipable>
   </item>-->
+  
+  <item name="ferry ticket">
+    <type class="documents" subclass="ferry ticket" tileid="-1"/>
+    <description>This is a ticket for the river ferry which is coming out soon.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
 </items>
