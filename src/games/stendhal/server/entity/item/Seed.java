@@ -53,7 +53,8 @@ public class Seed extends StackableItem {
 			
 			// the user should have a watering can to plant 
 			boolean onFlowerPot = this.getZone().getEntitiesAt(this.getX(), this.getY(), FlowerPot.class).size() > 0;
-			if (onFlowerPot && !(user.isEquippedItemInSlot("lhand", "watering can") || user.isEquippedItemInSlot("rhand", "watering can"))) {
+			boolean holdingWateringCan = user.isEquippedItemInSlot("lhand", "watering can") || user.isEquippedItemInSlot("rhand", "watering can");
+			if (onFlowerPot && !holdingWateringCan) {
 				user.sendPrivateText("You need to hold a watering can to plant the " + this.getName());
 				return false;
 			}

@@ -69,6 +69,7 @@ public class SeedTest {
 	@Test
 	public void testFlowerPot() {
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		assertNotNull(seed);
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -79,7 +80,6 @@ public class SeedTest {
 		zone.add(flowerPot);
 		flowerPot.setPosition(1, 0);
 		
-		assertNotNull(seed);
 		zone.add(seed);
 		seed.setPosition(1, 0);
 
