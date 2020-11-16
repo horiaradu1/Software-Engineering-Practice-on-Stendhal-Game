@@ -13,6 +13,6 @@
 package games.stendhal.server.entity.mapstuff.area;
 
 
-public class FlowerPot extends AreaEntity {
+public class FlowerPot extends AreaEntity implements FertileGround {
 
 }
