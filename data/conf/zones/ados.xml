@@ -4690,6 +4690,7 @@ Southeast: Docks
     <!--  NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.city.ForeignWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.FishesNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.city.RiverFerryAdosNPC" />
 
     <!-- Music/Ambiance -->
     <entity x="80" y="12">
