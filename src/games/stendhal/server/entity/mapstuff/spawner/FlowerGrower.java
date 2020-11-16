@@ -19,6 +19,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
+import games.stendhal.server.entity.mapstuff.area.FlowerPot;
 import marauroa.common.game.RPObject;
 
 /**
@@ -147,6 +148,11 @@ public class FlowerGrower extends VegetableGrower {
 	protected void growNewFruit() {
 		if (isOnFreeFertileGround()) {
 			super.growNewFruit();
+			
+			// If on a flower pot, then increase the ripeness by 1 extra level
+			if (this.getZone().getEntitiesAt(getX(), getY(), FlowerPot.class).size() > 0) {
+				setRipeness(getRipeness() + 1);	
+			}
 		} else {
 			if (getZone() != null) {
 				getZone().remove(this);
