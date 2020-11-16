@@ -165,7 +165,7 @@ public class FlowerGrowerTest {
 		zone.add(entity);
 		assertTrue(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
-		assertThat(fl.getRipeness(), is(1));
+		assertThat(fl.getRipeness(), is(2));
 		assertTrue(zone.getPlantGrowers().contains(fl));
 	}
 	
