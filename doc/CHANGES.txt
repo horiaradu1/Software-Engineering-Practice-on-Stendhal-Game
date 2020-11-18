@@ -9,6 +9,7 @@ Changelog
 - new items:
   - wandOfSluggishness item that can slow down players and creatures for a while.
   - watering can, to grow seeds indoors in flower pots
+  - ferry ticket: the ticket for the upcoming river ferry from Ados to Deniran.
 - new NPCS:
  - ferry ticket seller npcs in Deniran and Ados
 
