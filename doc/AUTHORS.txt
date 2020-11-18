@@ -203,15 +203,22 @@ Notable contributors:
   · NPCs
 - Andrii Perehuda
   · bug fixer
+  · Coder (new NPCs and items)
 - Jovan Petreski
   · bug fixer
+  · Coder (new items)
 - Jingxuan Chen
   · bug fixer
+  · Coder (new items)
 - Horia Radu
   · bug fixer
+  · Coder (new NPCs)
 - Amish Shah 
   · bug fixer
+  · Coder (flowerpot-related features)
 - Anna Peake 
   · bug fixer
+  · Coder (flowerpot-related features)
 - Kalina Shkenderova  
   · bug fixer
+  · Coder (flowerpot-related features)
