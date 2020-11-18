@@ -1,7 +1,16 @@
 Changelog
 ---------
 ---------
-
+1.36uom
+18.11.2020
+*world*
+- implemented FlowerPot entity which requires watering can
+- watering can comes with every house purchase as a welcome gift
+- new items:
+  - wandOfSluggishness item that can slow down players and creatures for a while.
+  - watering can, to grow seeds indoors in flower pots
+- new NPCS:
+ - ferry ticket seller npcs in Deniran and Ados
 
 1.35uom
 26.10.2020
