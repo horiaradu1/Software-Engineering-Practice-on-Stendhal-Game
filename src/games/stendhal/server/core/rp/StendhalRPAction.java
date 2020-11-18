@@ -368,6 +368,8 @@ public class StendhalRPAction {
 		// equipment that are broken are added to this list
 		final List<BreakableItem> broken = new ArrayList<>();
 
+		boolean isUsingWand = attackWeapon != null && attackWeapon.getName().equals("wandOfSluggishness");
+		
 		if (beaten) {
 			if ((defender instanceof Player)
 					&& defender.getsFightXpFrom(player)) {
@@ -435,7 +437,7 @@ public class StendhalRPAction {
 			player.notifyWorldAboutChanges();
 			
 			// slow down is wand is used
-			if (attackWeapon != null && attackWeapon.getName().equals("wandOfSluggishness")) {
+			if (isUsingWand) {
 				new HeavyStatusHandler().inflict(new HeavyStatus(), defender.getStatusList(), player);
 			}
 		} else {
@@ -449,7 +451,7 @@ public class StendhalRPAction {
 		if (isRanged) {
 			// Removing the missile is deferred here so that the weapon
 			// information is available when calculating the damage.
-			if (!(attackWeapon != null && attackWeapon.getName().equals("wandOfSluggishness")))
+			if (!isUsingWand)
 				useMissile(player);
 		}
 		
