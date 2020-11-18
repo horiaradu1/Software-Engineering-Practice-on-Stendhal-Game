@@ -41,8 +41,8 @@ public class RiverFerryDeniranNPC implements ZoneConfigurator {
 					
 	    		addGreeting("Hi, I am selling the tickets for the river ferry.");
 	    		final Map<String, Integer> offerings = new HashMap<String, Integer>();
-	            offerings.put("ferry ticket", 100);
-	            new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
+	        	offerings.put("ferry ticket", 100);
+	        	new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 	    		addReply("ferry ticket","Please ask for my #offer.");
 	    		addGoodbye();
 	    	}
