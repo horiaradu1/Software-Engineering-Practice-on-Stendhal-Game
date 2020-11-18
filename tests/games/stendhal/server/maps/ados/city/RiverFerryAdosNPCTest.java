@@ -37,7 +37,10 @@ public class RiverFerryAdosNPCTest {
 		SingletonRepository.getNPCList().clear();
 	}
 	
-	
+	/**
+	 * This test checks whether the NPC's sell function works correctly and 
+	 * whether the player can buy a ferry ticket if he has enough money
+	 */
 	@Test
 	public void testThatPlayerCanBuyTicketIfHasEnoughMoney() {
 		RiverFerryAdosNPC zoneconfig = new RiverFerryAdosNPC();
@@ -59,6 +62,10 @@ public class RiverFerryAdosNPCTest {
 		assertThat(getReply(ferryTicketSeller),is("Congratulations! Here is your ferry ticket!"));
 	}
 	
+	/**
+	 * This test checks whether the NPC's sell function works correctly and 
+	 * whether the player cannot buy a ferry ticket if he does not have enough money
+	 */
 	@Test
 	public void testThatPlayerCannotBuyTicketIfDoesNotHaveEnoughMoney() {
 		RiverFerryAdosNPC zoneconfig = new RiverFerryAdosNPC();
@@ -82,6 +89,10 @@ public class RiverFerryAdosNPCTest {
 		assertThat(getReply(ferryTicketSeller),is("Sorry, you don't have enough money!"));
 	}
 	
+	/**
+	 * This test checks whether the NPC's sell function works correctly and 
+	 * whether the player has a ferry ticket in the inventory after buying
+	 */
 	@Test
 	public void testThatPlayerHasTicketInInventoryAfterBuying() {
 		RiverFerryAdosNPC zoneconfig = new RiverFerryAdosNPC();
