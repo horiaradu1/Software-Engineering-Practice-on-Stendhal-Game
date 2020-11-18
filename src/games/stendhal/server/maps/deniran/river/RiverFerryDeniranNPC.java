@@ -49,7 +49,7 @@ public class RiverFerryDeniranNPC implements ZoneConfigurator {
 	    };
 
 	    npc.setEntityClass("ferryTicketSeller");
-	    npc.setDescription("You see Ferry Ticket Seller Deniran, he looks a a bit busy at the moment but perhaps he can help you anyway.");
+	    npc.setDescription("You see Ferry Ticket Seller Deniran, he looks a bit busy at the moment but perhaps he can help you anyway.");
 	    npc.setPosition(40, 10);
 	    npc.initHP(100);
 	

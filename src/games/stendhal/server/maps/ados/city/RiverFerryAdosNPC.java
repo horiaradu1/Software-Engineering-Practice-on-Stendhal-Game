@@ -51,7 +51,7 @@ public class RiverFerryAdosNPC implements ZoneConfigurator {
 	    };
 
 	    npc.setEntityClass("ferryTicketSeller");
-	    npc.setDescription("You see Ferry Ticket Seller, he looks a a bit busy at the moment but perhaps he can help you anyway.");
+	    npc.setDescription("You see Ferry Ticket Seller, he looks a bit busy at the moment but perhaps he can help you anyway.");
 	    npc.setPosition(70, 115);
 	    npc.initHP(100);
 
