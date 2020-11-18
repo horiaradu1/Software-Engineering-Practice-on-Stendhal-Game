@@ -10,20 +10,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import utilities.ZonePlayerAndNPCTestImpl;
+import utilities.RPClass.ItemTestHelper;
 
-public class RiverFerryTicketTest extends ZonePlayerAndNPCTestImpl {
-	
-	private static final String ZONE_NAME = "testzone";
+public class RiverFerryTicketTest{
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		setupZone(ZONE_NAME);
-		
-	}
-	
-	public RiverFerryTicketTest() {
-		setZoneForPlayer(ZONE_NAME);
+		ItemTestHelper.generateRPClasses();
 	}
 	
 
@@ -34,12 +27,16 @@ public class RiverFerryTicketTest extends ZonePlayerAndNPCTestImpl {
 		
 		// Checks to see if ticket exists
 		assertNotNull("Ferry ticket returns <null>", ticket);
+		
 		// Checks for the correct name of the ticket
 		assertEquals("ferry ticket", ticket.getName());
+		
 		// Check for the correct description of the ticket
 		assertEquals("This is a ticket for the river ferry which is coming out soon.", ticket.getDescription());
+		
 		// Check to see if the ticket can be equipped in a bag
 		assertTrue(ticket.canBeEquippedIn("bag"));
+		
 		// Check to see if the ticket can't be equipped in the hands
 		assertFalse(ticket.canBeEquippedIn("lhand"));
 		assertFalse(ticket.canBeEquippedIn("rhand"));
