@@ -16,6 +16,7 @@ import java.util.Map;
 
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.area.FlowerPot;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
 /**
@@ -49,6 +50,15 @@ public class Seed extends StackableItem {
 				user.sendPrivateText("The " + this.getName() + " is too far away");
 				return false;
 			}
+			
+			// the user should have a watering can to plant 
+			boolean onFlowerPot = this.getZone().getEntitiesAt(this.getX(), this.getY(), FlowerPot.class).size() > 0;
+			boolean holdingWateringCan = user.isEquippedItemInSlot("lhand", "watering can") || user.isEquippedItemInSlot("rhand", "watering can");
+			if (onFlowerPot && !holdingWateringCan) {
+				user.sendPrivateText("You need to hold a watering can to plant the " + this.getName());
+				return false;
+			}
+
 
 			// the infostring of the seed stores what it should grow
 			final String infostring = this.getInfoString();

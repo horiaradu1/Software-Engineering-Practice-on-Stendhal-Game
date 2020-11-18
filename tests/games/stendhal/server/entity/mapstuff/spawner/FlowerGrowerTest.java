@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.area.FlowerPot;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPClass;
 import utilities.RPClass.GrowingPassiveEntityRespawnPointTestHelper;
@@ -150,6 +151,24 @@ public class FlowerGrowerTest {
 		assertTrue(zone.getPlantGrowers().contains(fl));
 	}
 
+	/**
+	 * Tests for growing on a flower pot entity
+	 */
+	@Test
+	public void testGrowInFlowerPot() {
+		final FlowerGrower fl = new FlowerGrower();
+		fl.setRipeness(0);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final Entity entity = new FlowerPot();
+
+		zone.add(fl);
+		zone.add(entity);
+		assertTrue(fl.isOnFreeFertileGround());
+		fl.growNewFruit();
+		assertThat(fl.getRipeness(), is(2));
+		assertTrue(zone.getPlantGrowers().contains(fl));
+	}
+	
 	/**
 	 * Tests for growFertileGroundElsewhere.
 	 */
