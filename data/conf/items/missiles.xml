@@ -164,5 +164,28 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+  <item name="wandOfSluggishness">
+    <type class="missile" subclass="wandOfSluggishness" tileid="-1"/>
+    <description>Wand to slow down the players and enemy creatures.</description>
+    <implementation class-name="games.stendhal.server.entity.item.WandOfSluggishness"/>
+    <attributes>
+      <atk value="10" condition="!testing.combat"/>
+      <ratk value="10" condition="testing.combat"/>
+      <range value="4000"/>
+      <quantity value="1"/>
+      <max_quantity value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
 </items>
