@@ -543,6 +543,7 @@
 		</copy>
 
 		<copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
+		<copy todir="${build_client_data}/data/conf" file="data/conf/slashActions.xml"/>
 		<jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
 
 		<mkdir dir="${build_client_sound_data}"/>
@@ -1151,6 +1152,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	            </sourcefiles>
 	        </structure>
 	    	<xml destfile="${build_tests_report}/jacoco.xml" />
+	    	<html destdir="${buildroot}/build_coverage"/>
 	    </jacoco:report>
 
 	</target>
