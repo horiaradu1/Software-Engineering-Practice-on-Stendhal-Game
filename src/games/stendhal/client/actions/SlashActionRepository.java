@@ -18,8 +18,10 @@ import static games.stendhal.common.constants.Actions.INSPECTQUEST;
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -43,7 +45,7 @@ public class SlashActionRepository {
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
-		actions.put("adminnote", new AdminNoteAction());
+		actions.put("adminnote", new AdminNoteAction()); // here
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put(ALTERKILL, new AlterKillAction());
@@ -52,7 +54,7 @@ public class SlashActionRepository {
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
 
-		actions.put("ban", new BanAction());
+//		actions.put("ban", new BanAction());   // here
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
@@ -137,6 +139,21 @@ public class SlashActionRepository {
 
 		// allows players to remove the detail layer manually
 		actions.put(REMOVEDETAIL, new RemoveDetailAction());
+		
+		
+		try {
+			final ActionsXMLLoader loader = new ActionsXMLLoader();
+			
+			final Map<String, BaseAction> baseActions = loader.load(new URI("/data/conf/slashActions.xml"));
+			
+			for (Map.Entry<String, BaseAction> entry : baseActions.entrySet()) {
+				 String name = entry.getKey();
+				 BaseAction action = entry.getValue();
+				 actions.put(name, action);
+			}
+		} catch (final Exception e) {
+			// LOGGER.error("SlashActions.xml could not be loaded", e);
+		}
 	}
 
 	/**
