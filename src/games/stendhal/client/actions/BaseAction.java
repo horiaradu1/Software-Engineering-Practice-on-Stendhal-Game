@@ -1,5 +1,6 @@
 package games.stendhal.client.actions;
 
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.client.ClientSingletonRepository;
@@ -18,12 +19,19 @@ public class BaseAction implements SlashAction {
 	private boolean paramsMinLength = false;
 	
 	private Map<String, String> parameters, staticParameters;
+	private List<String> aliases;
 	
-	protected BaseAction(int minParams, int maxParams, Map<String, String> parameters, Map<String, String> staticParameters) {
+	protected BaseAction(int minParams, 
+						 int maxParams, 
+						 Map<String, String> parameters, 
+						 Map<String, String> staticParameters,
+						 List<String> aliases
+			) {
 		minimumParameters = minParams;
 		maximumParameters = maxParams;
 		this.parameters = parameters;
 		this.staticParameters = staticParameters;
+		this.aliases = aliases;
 	}
 
 	@Override
@@ -110,5 +118,9 @@ public class BaseAction implements SlashAction {
 	
 	public void setParamsMinLength(boolean b) {
 		paramsMinLength = b;
+	}
+	
+	public List<String> getAliases(){
+		return aliases;
 	}
 }

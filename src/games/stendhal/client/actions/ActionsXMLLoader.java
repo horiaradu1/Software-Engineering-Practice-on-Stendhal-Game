@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -19,6 +21,7 @@ public class ActionsXMLLoader extends DefaultHandler{
 	
 	private Map<String, BaseAction> map;
 	private Map<String, String> parameters, staticParameters;
+	private List<String> aliases;
 	
 	private String name;
 	
@@ -26,6 +29,7 @@ public class ActionsXMLLoader extends DefaultHandler{
 	
 	private boolean parametersTag = false;
 	private boolean staticParametersTag = false;
+	private boolean aliasesTag = false;
 	private boolean remainderRequired;
 	private boolean remainderNonEmpty;
 	private boolean remainderNotNull;
@@ -79,6 +83,7 @@ public class ActionsXMLLoader extends DefaultHandler{
 			name = attrs.getValue("name");
 			parameters = new LinkedHashMap<String, String>();
 			staticParameters = new LinkedHashMap<String, String>();
+			aliases = new LinkedList<String>();
 			remainderNonEmpty = false;
 			remainderRequired = false;
 			remainderNotNull = false;
@@ -102,17 +107,21 @@ public class ActionsXMLLoader extends DefaultHandler{
 			staticParametersTag = true;
 		} else if (qName.equals("parameters")) {
 			parametersTag = true;
+		} else if (qName.equals("aliases")) {
+			aliasesTag = true;
 		} else if (staticParametersTag) {
 			staticParameters.put(qName, attrs.getValue("value"));
 		} else if (parametersTag) {
 			parameters.put(qName, attrs.getValue("value"));
-		} 
+		} else if (aliasesTag) {
+			aliases.add(attrs.getValue("value"));
+		}
 	}
 
 	@Override
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
 		if (qName.equals("action")) {
-			final BaseAction action = new BaseAction(minParams, maxParams, parameters, staticParameters);
+			final BaseAction action = new BaseAction(minParams, maxParams, parameters, staticParameters, aliases);
 			action.setRemainderNonEmpty(remainderNonEmpty);
 			action.setRemainderRequired(remainderRequired);
 			action.setRemainderNotNull(remainderNotNull);
@@ -124,6 +133,8 @@ public class ActionsXMLLoader extends DefaultHandler{
 			parametersTag = false;
 		} else if (qName.equals("static_parameters")) {
 			staticParametersTag = false;
+		} else if (qName.equals("aliases")) {
+			aliasesTag = false;
 		}
 	}
 	

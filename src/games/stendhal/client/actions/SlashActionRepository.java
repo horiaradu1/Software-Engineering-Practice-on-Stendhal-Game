@@ -150,6 +150,9 @@ public class SlashActionRepository {
 				 String name = entry.getKey();
 				 BaseAction action = entry.getValue();
 				 actions.put(name, action);
+				 for (String alias : action.getAliases()) {
+					 actions.put(alias, action);
+				 }
 			}
 		} catch (final Exception e) {
 			// LOGGER.error("SlashActions.xml could not be loaded", e);

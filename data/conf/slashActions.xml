@@ -16,6 +16,9 @@
   
   <!--
   <action name="ban">
+  	<aliases>
+  		<alias value="ban_alias" />
+  	</aliases>
   	<type value="ban" />
     <min_params value="2" />
     <max_params value="2" />
