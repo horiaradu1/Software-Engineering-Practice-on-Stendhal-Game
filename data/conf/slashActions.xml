@@ -21,6 +21,9 @@
     <max_params value="2" />
     <remainder_required />
     <remainder_non_empty />
+    <remainder_not_null />
+    <params_not_null />
+    <params_min_length />
     <static_parameters>
     	<type value="ban" />
     </static_parameters>

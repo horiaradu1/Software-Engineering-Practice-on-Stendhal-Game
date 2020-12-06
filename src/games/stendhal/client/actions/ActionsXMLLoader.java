@@ -28,6 +28,9 @@ public class ActionsXMLLoader extends DefaultHandler{
 	private boolean staticParametersTag = false;
 	private boolean remainderRequired;
 	private boolean remainderNonEmpty;
+	private boolean remainderNotNull;
+	private boolean paramsNotNull;
+	private boolean paramsMinLength;
 	
 	public Map<String, BaseAction> load(final URI uri) throws SAXException {
 		map = new LinkedHashMap<String, BaseAction>();
@@ -78,6 +81,9 @@ public class ActionsXMLLoader extends DefaultHandler{
 			staticParameters = new LinkedHashMap<String, String>();
 			remainderNonEmpty = false;
 			remainderRequired = false;
+			remainderNotNull = false;
+			paramsNotNull = false;
+			paramsMinLength = false;
 		} else if (qName.equals("min_params")) {
 			minParams = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("max_params")) {
@@ -86,6 +92,12 @@ public class ActionsXMLLoader extends DefaultHandler{
 			remainderRequired = true;
 		} else if (qName.equals("remainder_non_empty")) {
 			remainderNonEmpty = true;
+		} else if (qName.equals("remainder_not_null")) {
+			remainderNotNull = true;
+		} else if (qName.equals("params_not_null")) {
+			paramsNotNull = true;
+		} else if (qName.equals("params_min_length")) {
+			paramsMinLength = true;
 		} else if (qName.equals("static_parameters")) {
 			staticParametersTag = true;
 		} else if (qName.equals("parameters")) {
@@ -103,6 +115,9 @@ public class ActionsXMLLoader extends DefaultHandler{
 			final BaseAction action = new BaseAction(minParams, maxParams, parameters, staticParameters);
 			action.setRemainderNonEmpty(remainderNonEmpty);
 			action.setRemainderRequired(remainderRequired);
+			action.setRemainderNotNull(remainderNotNull);
+			action.setParamsNotNull(paramsNotNull);
+			action.setParamsMinLength(paramsMinLength);
 
 			map.put(name, action);
 		} else if (qName.equals("parameters")) {

@@ -12,6 +12,10 @@ public class BaseAction implements SlashAction {
 	
 	private boolean remainderRequired = false;
 	private boolean remainderNonEmpty = false;
+	private boolean remainderNotNull = false;
+	
+	private boolean paramsNotNull = false;
+	private boolean paramsMinLength = false;
 	
 	private Map<String, String> parameters, staticParameters;
 	
@@ -26,6 +30,18 @@ public class BaseAction implements SlashAction {
 	public boolean execute(String[] params, String remainder) {
 		
 		if (remainderRequired && remainder.isEmpty()) {
+			return false;
+		}
+		
+		if (remainderNotNull && remainder == null) {
+			return false;
+		}
+		
+		if (paramsNotNull && params == null) {
+			return false;
+		}
+		
+		if (paramsMinLength && params.length < minimumParameters) {
 			return false;
 		}
 		
@@ -82,5 +98,17 @@ public class BaseAction implements SlashAction {
 	
 	public void setRemainderNonEmpty(boolean b) {
 		remainderNonEmpty = b;
+	}
+	
+	public void setRemainderNotNull(boolean b) {
+		remainderNotNull = b;
+	}
+	
+	public void setParamsNotNull(boolean b) {
+		paramsNotNull = b;
+	}
+	
+	public void setParamsMinLength(boolean b) {
+		paramsMinLength = b;
 	}
 }
