@@ -22,6 +22,7 @@ public class AcceptChallengeActionTest {
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+		SlashActionRepository.register();
 	}
 	
 	/**
@@ -38,7 +39,7 @@ public class AcceptChallengeActionTest {
 				assertEquals("hose", action.get("target"));
 			}
 		};
-		final AcceptChallengeAction action = new AcceptChallengeAction();
+		final SlashAction action = SlashActionRepository.get("accept");
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String[] {"hose"}, null));
 	}
@@ -48,7 +49,7 @@ public class AcceptChallengeActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AcceptChallengeAction action = new AcceptChallengeAction();
+		final SlashAction action = SlashActionRepository.get("accept");
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -57,7 +58,7 @@ public class AcceptChallengeActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AcceptChallengeAction action = new AcceptChallengeAction();
+		final SlashAction action = SlashActionRepository.get("accept");
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

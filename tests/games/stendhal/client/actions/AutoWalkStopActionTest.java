@@ -22,6 +22,7 @@ public class AutoWalkStopActionTest {
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+		SlashActionRepository.register();
 	}
 	
 	/**
@@ -38,7 +39,7 @@ public class AutoWalkStopActionTest {
 				assertEquals("stop", action.get("mode"));
 			}
 		};
-		final AutoWalkStopAction action = new AutoWalkStopAction();
+		final SlashAction action = SlashActionRepository.get("stopwalk");
 		assertTrue(action.execute(null, "hose"));
 	}
 	
@@ -47,7 +48,7 @@ public class AutoWalkStopActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AutoWalkStopAction action = new AutoWalkStopAction();
+		final SlashAction action = SlashActionRepository.get("stopwalk");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -56,7 +57,7 @@ public class AutoWalkStopActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AutoWalkStopAction action = new AutoWalkStopAction();
+		final SlashAction action = SlashActionRepository.get("stopwalk");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }

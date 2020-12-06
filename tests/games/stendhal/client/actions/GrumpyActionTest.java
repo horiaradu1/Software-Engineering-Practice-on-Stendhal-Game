@@ -17,6 +17,7 @@ public class GrumpyActionTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
@@ -37,7 +38,7 @@ public class GrumpyActionTest {
 				assertEquals("he ate my lunch", action.get("reason"));
 			}
 		};
-		final GrumpyAction action = new GrumpyAction();
+		final SlashAction action = SlashActionRepository.get("grumpy");
 		assertTrue(action.execute(null, "he ate my lunch"));
 	}
 	
@@ -46,7 +47,7 @@ public class GrumpyActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final GrumpyAction action = new GrumpyAction();
+		final SlashAction action = SlashActionRepository.get("grumpy");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -55,7 +56,7 @@ public class GrumpyActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final GrumpyAction action = new GrumpyAction();
+		final SlashAction action = SlashActionRepository.get("grumpy");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

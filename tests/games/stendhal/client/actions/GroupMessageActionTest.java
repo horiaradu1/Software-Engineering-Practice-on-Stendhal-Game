@@ -22,6 +22,15 @@ public class GroupMessageActionTest {
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+		SlashActionRepository.register();
+	}
+	
+	/**
+	 * Tests that the aliases for the groupmessage command point to the same handler
+	 */
+	@Test
+	public void testAliases() {
+		assertEquals(SlashActionRepository.get("groupmessage"), SlashActionRepository.get("p"));
 	}
 	
 	/**
@@ -37,7 +46,7 @@ public class GroupMessageActionTest {
 				assertEquals("he ate my lunch", action.get("text"));
 			}
 		};
-		final GroupMessageAction action = new GroupMessageAction();
+		final SlashAction action = SlashActionRepository.get("groupmessage");
 		assertTrue(action.execute(null, "he ate my lunch"));
 	}
 	
@@ -46,7 +55,7 @@ public class GroupMessageActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final GroupMessageAction action = new GroupMessageAction();
+		final SlashAction action = SlashActionRepository.get("groupmessage");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -55,7 +64,7 @@ public class GroupMessageActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final GroupMessageAction action = new GroupMessageAction();
+		final SlashAction action = SlashActionRepository.get("groupmessage");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 
