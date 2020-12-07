@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<actions>
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ./slashActions.xsd ">
+
   <action name="ban">
     <min_params value="2" />
     <max_params value="2" />
@@ -19,7 +20,6 @@
   	<aliases>
   		<alias value="ban_alias" />
   	</aliases>
-  	<type value="ban" />
     <min_params value="2" />
     <max_params value="2" />
     <remainder_required />
