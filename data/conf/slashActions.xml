@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ./slashActions.xsd ">
+
+  <action name="ban">
+    <min_params value="2" />
+    <max_params value="2" />
+    <static_parameters>
+    	<type name="type" value="ban" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    	<param name="hours" value="1" />
+    	<param name="reason" value="remainder" />
+    </parameters>
+  </action>
+  
+  <!--
+  <action name="ban">
+    <aliases>
+        <alias value="ban_alias" />
+    </aliases>
+    <min_params value="2" />
+    <max_params value="2" />
+    <remainder_required />
+    <remainder_non_empty />
+    <remainder_not_null />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+        <type name="type" value="ban" />
+        <param name="smth" value="val" />
+    </static_parameters>
+    <parameters>
+        <param name="target" value="0" />
+        <param name="hours" value="1" />
+        <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+  -->
+</actions>

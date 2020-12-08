@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+	xmlns:Q1="stendhal" >
+	
+	<element name="actions" type="Q1:actionGroup"></element>
+
+	<complexType name="actionGroup">
+		<sequence>
+			<element name="action" type="Q1:actionType" minOccurs="0"
+				maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="actionType">
+		<sequence>
+			<element name="aliases" type="Q1:aliasesEl" minOccurs="0" maxOccurs="1" />
+			<element name="min_params" type="Q1:paramsData" minOccurs="1" maxOccurs="1"></element>
+			<element name="max_params" type="Q1:paramsData" minOccurs="1" maxOccurs="1"></element>
+			<element name="remainder_required" minOccurs="0" maxOccurs="1" ></element>
+			<element name="remainder_non_empty" minOccurs="0" maxOccurs="1" ></element>
+			<element name="remainder_not_null" minOccurs="0" maxOccurs="1" ></element>
+			<element name="params_not_null" minOccurs="0" maxOccurs="1" ></element>
+			<element name="params_min_length" minOccurs="0" maxOccurs="1" ></element>
+			<element name="static_parameters" type="Q1:sparams" minOccurs="1" maxOccurs="1" ></element>
+			<element name="parameters" type="Q1:params" minOccurs="1" maxOccurs="1" ></element>
+		</sequence>
+		<attribute name="name" type="string" use="required"></attribute>
+	</complexType>
+	
+	<complexType name="aliasesEl">
+		<sequence>
+			<element name="alias" type="Q1:aliasType" minOccurs="1" maxOccurs="unbounded" ></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="sparams">
+		<sequence>
+			<element name="type" type="Q1:typeParam" minOccurs="1" maxOccurs="1"></element>
+			<element name="param" type="Q1:paramsEl" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="params">
+		<sequence>
+			<element name="param" type="Q1:paramsEl" minOccurs="1" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="paramsData">
+		<attribute name="value" type="int" use="required"></attribute>
+	</complexType>
+	
+	<complexType name="typeParam">
+		<attribute name="name" type="string" fixed="type" use="required"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
+	</complexType>
+	
+	<complexType name="paramsEl">
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
+	</complexType>
+	
+	<complexType name="aliasType">
+		<attribute name="value" type="string" use="required"></attribute>
+	</complexType>
+
+
+</schema>
