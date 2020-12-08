@@ -110,9 +110,9 @@ public class ActionsXMLLoader extends DefaultHandler{
 		} else if (qName.equals("aliases")) {
 			aliasesTag = true;
 		} else if (staticParametersTag) {
-			staticParameters.put(qName, attrs.getValue("value"));
+			staticParameters.put(attrs.getValue("name"), attrs.getValue("value"));
 		} else if (parametersTag) {
-			parameters.put(qName, attrs.getValue("value"));
+			parameters.put(attrs.getValue("name"), attrs.getValue("value"));
 		} else if (aliasesTag) {
 			aliases.add(attrs.getValue("value"));
 		}

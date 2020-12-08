@@ -6,12 +6,12 @@
     <min_params value="2" />
     <max_params value="2" />
     <static_parameters>
-    	<type value="ban" />
+    	<type name="type" value="ban" />
     </static_parameters>
     <parameters>
-        <target value="0" />
-        <hours value="1" />
-        <reason value="remainder" /> 
+    	<param name="target" value="0" />
+    	<param name="hours" value="1" />
+    	<param name="reason" value="remainder" />
     </parameters>
   </action>
   
@@ -28,12 +28,13 @@
     <params_not_null />
     <params_min_length />
     <static_parameters>
-    	<type value="ban" />
+    	<type name="type" value="ban" />
+    	<param name="smth" value="val" />
     </static_parameters>
     <parameters>
-        <target value="0" />
-        <hours value="1" />
-        <reason value="remainder" /> 
+    	<param name="target" value="0" />
+    	<param name="hours" value="1" />
+    	<param name="reason" value="remainder" />
     </parameters>
   </action>
   -->

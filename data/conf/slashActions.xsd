@@ -36,27 +36,33 @@
 	
 	<complexType name="sparams">
 		<sequence>
-			<element name="type" type="Q1:paramsEl"></element>
-			<any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="type" type="Q1:typeParam" minOccurs="1" maxOccurs="1"></element>
+			<element name="param" type="Q1:paramsEl" minOccurs="0" maxOccurs="unbounded"></element>
 		</sequence>
 	</complexType>
 	
 	<complexType name="params">
 		<sequence>
-			<any processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
+			<element name="param" type="Q1:paramsEl" minOccurs="1" maxOccurs="unbounded"></element>
 		</sequence>
 	</complexType>
 	
 	<complexType name="paramsData">
-		<attribute name="value" type="int"></attribute>
+		<attribute name="value" type="int" use="required"></attribute>
+	</complexType>
+	
+	<complexType name="typeParam">
+		<attribute name="name" type="string" fixed="type" use="required"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
 	</complexType>
 	
 	<complexType name="paramsEl">
-		<attribute name="value" type="string"></attribute>
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
 	</complexType>
 	
 	<complexType name="aliasType">
-		<attribute name="value" type="string"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
 	</complexType>
 
 
