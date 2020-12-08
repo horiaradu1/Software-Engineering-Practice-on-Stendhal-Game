@@ -14,6 +14,7 @@ package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -25,14 +26,11 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class BanActionTest {
-	
-	private static SlashAction action;
+public class GagActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
-		action = SlashActionRepository.get("ban");
 	}
 
 	@After
@@ -45,24 +43,26 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("ban", action.get("type"));
-				assertEquals("schnick", action.get("target"));
-				assertEquals("schneck", action.get("hours"));
-				assertEquals("schnack", action.get("reason"));
+				assertEquals("gag", action.get("type"));
+				assertEquals("kash", action.get("target"));
+				assertEquals("30", action.get("minutes"));
+				assertEquals("woo amaze", action.get("reason"));
 			}
 		};
-		assertTrue(action.execute(new String[] {"schnick", "schneck"}, "schnack"));
+		final SlashAction action = SlashActionRepository.get("gag");
+		assertFalse(action.execute(new String []{"kash", "30"}, ""));
+		assertTrue(action.execute(new String []{"kash", "30"}, "woo amaze"));
 	}
-	
+
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
+		final SlashAction action = SlashActionRepository.get("gag");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
@@ -71,6 +71,7 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
+		final SlashAction action = SlashActionRepository.get("gag");
 		assertThat(action.getMinimumParameters(), is(2));
 	}
 

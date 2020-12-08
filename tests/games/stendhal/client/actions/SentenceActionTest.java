@@ -14,6 +14,7 @@ package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -25,14 +26,11 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class BanActionTest {
-	
-	private static SlashAction action;
+public class SentenceActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
-		action = SlashActionRepository.get("ban");
 	}
 
 	@After
@@ -45,25 +43,25 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("ban", action.get("type"));
-				assertEquals("schnick", action.get("target"));
-				assertEquals("schneck", action.get("hours"));
-				assertEquals("schnack", action.get("reason"));
+				assertEquals("sentence", action.get("type"));
+				assertEquals("wooo amaze", action.get("value"));
 			}
 		};
-		assertTrue(action.execute(new String[] {"schnick", "schneck"}, "schnack"));
+		final SlashAction action = SlashActionRepository.get("sentence");
+		assertFalse(action.execute(null, "wooo amaze"));
+		assertTrue(action.execute(new String []{""}, "wooo amaze"));
 	}
-	
+
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		assertThat(action.getMaximumParameters(), is(2));
+		final SlashAction action = SlashActionRepository.get("sentence");
+		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	/**
@@ -71,7 +69,8 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		assertThat(action.getMinimumParameters(), is(2));
+		final SlashAction action = SlashActionRepository.get("sentence");
+		assertThat(action.getMinimumParameters(), is(0));
 	}
 
 }

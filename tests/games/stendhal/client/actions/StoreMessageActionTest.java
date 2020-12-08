@@ -25,19 +25,24 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class BanActionTest {
-	
-	private static SlashAction action;
+public class StoreMessageActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
-		action = SlashActionRepository.get("ban");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+	}
+	
+	/**
+	 * Tests that the aliases for the MessageAction command point to the same handler
+	 */
+	@Test
+	public void testAliases() {
+		assertEquals(SlashActionRepository.get("msg"), SlashActionRepository.get("tell"));
 	}
 
 	/**
@@ -45,25 +50,25 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("ban", action.get("type"));
-				assertEquals("schnick", action.get("target"));
-				assertEquals("schneck", action.get("hours"));
-				assertEquals("schnack", action.get("reason"));
+				assertEquals("storemessage", action.get("type"));
+				assertEquals("kash", action.get("target"));
+				assertEquals("cool and fun times", action.get("text"));
 			}
 		};
-		assertTrue(action.execute(new String[] {"schnick", "schneck"}, "schnack"));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertTrue(action.execute(new String []{"kash"}, "cool and fun times"));
 	}
-	
+
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		assertThat(action.getMaximumParameters(), is(2));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	/**
@@ -71,7 +76,8 @@ public class BanActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		assertThat(action.getMinimumParameters(), is(2));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertThat(action.getMinimumParameters(), is(1));
 	}
 
 }
