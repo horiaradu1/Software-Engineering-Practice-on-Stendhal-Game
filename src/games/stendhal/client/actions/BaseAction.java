@@ -37,11 +37,11 @@ public class BaseAction implements SlashAction {
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		
-		if (remainderRequired && remainder.isEmpty()) {
+		if (remainderNotNull && remainder == null) {
 			return false;
 		}
 		
-		if (remainderNotNull && remainder == null) {
+		if (remainderRequired && remainder.isEmpty()) {
 			return false;
 		}
 		
