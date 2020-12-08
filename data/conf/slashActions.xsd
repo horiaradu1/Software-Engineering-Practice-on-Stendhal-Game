@@ -30,7 +30,7 @@
 	
 	<complexType name="aliasesEl">
 		<sequence>
-			<element name="alias" type="Q1:aliasType" minOccurs="0" maxOccurs="unbounded" ></element>
+			<element name="alias" type="Q1:aliasType" minOccurs="1" maxOccurs="unbounded" ></element>
 		</sequence>
 	</complexType>
 	
@@ -56,9 +56,7 @@
 	</complexType>
 	
 	<complexType name="aliasType">
-		<attribute name="class" type="string"></attribute>
-		<attribute name="subclass" type="string"></attribute>
-		<attribute name="tileid" type="int"></attribute>
+		<attribute name="value" type="string"></attribute>
 	</complexType>
 
 
