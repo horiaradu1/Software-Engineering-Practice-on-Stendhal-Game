@@ -17,9 +17,9 @@
   
   <!--
   <action name="ban">
-  	<aliases>
-  		<alias value="ban_alias" />
-  	</aliases>
+    <aliases>
+        <alias value="ban_alias" />
+    </aliases>
     <min_params value="2" />
     <max_params value="2" />
     <remainder_required />
@@ -28,13 +28,13 @@
     <params_not_null />
     <params_min_length />
     <static_parameters>
-    	<type name="type" value="ban" />
-    	<param name="smth" value="val" />
+        <type name="type" value="ban" />
+        <param name="smth" value="val" />
     </static_parameters>
     <parameters>
-    	<param name="target" value="0" />
-    	<param name="hours" value="1" />
-    	<param name="reason" value="remainder" />
+        <param name="target" value="0" />
+        <param name="hours" value="1" />
+        <param name="reason" value="remainder" />
     </parameters>
   </action>
   -->

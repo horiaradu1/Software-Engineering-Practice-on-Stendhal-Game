@@ -22,10 +22,10 @@ public class BaseAction implements SlashAction {
 	private List<String> aliases;
 	
 	protected BaseAction(int minParams, 
-						 int maxParams, 
-						 Map<String, String> parameters, 
-						 Map<String, String> staticParameters,
-						 List<String> aliases
+	                     int maxParams, 
+	                     Map<String, String> parameters, 
+	                     Map<String, String> staticParameters,
+	                     List<String> aliases
 			) {
 		minimumParameters = minParams;
 		maximumParameters = maxParams;

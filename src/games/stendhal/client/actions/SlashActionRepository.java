@@ -45,7 +45,7 @@ public class SlashActionRepository {
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
-		actions.put("adminnote", new AdminNoteAction()); // here
+		actions.put("adminnote", new AdminNoteAction());
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put(ALTERKILL, new AlterKillAction());
@@ -54,7 +54,7 @@ public class SlashActionRepository {
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
 
-//		actions.put("ban", new BanAction());   // here
+//		actions.put("ban", new BanAction());   
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
