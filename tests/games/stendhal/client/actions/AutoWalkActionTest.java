@@ -17,11 +17,11 @@ public class AutoWalkActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		SlashActionRepository.register();
 		StendhalClient.resetClient();
 	}
 	

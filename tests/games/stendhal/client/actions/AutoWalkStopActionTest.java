@@ -17,12 +17,12 @@ public class AutoWalkStopActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
-		SlashActionRepository.register();
 	}
 	
 	/**

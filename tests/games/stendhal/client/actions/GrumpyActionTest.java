@@ -41,7 +41,24 @@ public class GrumpyActionTest {
 		final SlashAction action = SlashActionRepository.get("grumpy");
 		assertTrue(action.execute(null, "he ate my lunch"));
 	}
+
 	
+	/**
+	 * Ensure the action fires with no remainder
+	 */
+	@Test
+	public void testExecuteNoRemainder() {
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals("grumpy", action.get("type"));
+				assertEquals(null, action.get("reason"));
+			}
+		};
+		final SlashAction action = SlashActionRepository.get("grumpy");
+		assertTrue(action.execute(null, ""));
+	}
+
 	/**
 	 * Tests for getMaximumParameters.
 	 */
