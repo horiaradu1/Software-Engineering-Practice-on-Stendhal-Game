@@ -86,6 +86,20 @@
      <type name="type" value="invisible" />
     </static_parameters>
   </action>
+  
+  <action name="challenge">
+    <min_params value="1" />
+    <max_params value="1" />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+      <type name="type" value="challenge" />
+      <param name="action" value="open" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+    </parameters>
+  </action>
 
   <!--
   <action name="ban">
