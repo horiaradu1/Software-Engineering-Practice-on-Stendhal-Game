@@ -41,6 +41,18 @@
     </parameters>
   </action>
   
+  <action name="grumpy">
+    <min_params value="0" />
+    <max_params value="0" />
+    <remainder_non_empty />
+    <static_parameters>
+     <type name="type" value="grumpy" />
+    </static_parameters>
+    <parameters>
+     <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+  
   <!--
   <action name="ban">
     <aliases>

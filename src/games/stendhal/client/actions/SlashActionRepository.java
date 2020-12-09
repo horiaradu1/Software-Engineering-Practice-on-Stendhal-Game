@@ -69,7 +69,6 @@ public class SlashActionRepository {
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("group", new GroupManagementAction(groupMessage));
 		actions.put("groupmessage", groupMessage);
-		actions.put("grumpy", new GrumpyAction());
 
 		actions.put("help", help);
 
