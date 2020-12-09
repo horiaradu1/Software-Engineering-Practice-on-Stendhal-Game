@@ -14,7 +14,6 @@ package games.stendhal.client.actions;
 
 import static games.stendhal.common.constants.Actions.ALTERKILL;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
-import static games.stendhal.common.constants.Actions.INSPECTQUEST;
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
@@ -74,9 +73,7 @@ public class SlashActionRepository {
 		actions.put("ignore", new IgnoreAction());
 
 		actions.put(INSPECTKILL, new InspectKillAction());
-		actions.put(INSPECTQUEST, new InspectQuestAction());
-		actions.put("invisible", new InvisibleAction());
-
+		
 		actions.put("jail", new JailAction());
 
 		actions.put("listproducers", new ListProducersAction());

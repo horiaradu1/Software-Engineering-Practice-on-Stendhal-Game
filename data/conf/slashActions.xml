@@ -67,6 +67,26 @@
     </parameters>
   </action>
 
+  <action name="inspectquest">
+    <min_params value="2" />
+    <max_params value="2" />
+    <static_parameters>
+    	<type name="type" value="inspectquest" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    	<param name="quest_slot" value="1" />
+    </parameters>
+  </action>
+  
+ <action name="invisible">
+    <min_params value="0" />
+    <max_params value="0" />
+    <static_parameters>
+     <type name="type" value="invisible" />
+    </static_parameters>
+  </action>
+
   <!--
   <action name="ban">
     <aliases>
