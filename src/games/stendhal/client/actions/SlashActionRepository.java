@@ -71,8 +71,6 @@ public class SlashActionRepository {
 		actions.put("ignore", new IgnoreAction());
 
 		actions.put(INSPECTKILL, new InspectKillAction());
-		
-		actions.put("jail", new JailAction());
 
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());

@@ -39,7 +39,6 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("gmhelp").toString(), containsString("GMHelpAction"));
 		assertThat(SlashActionRepository.get("help").toString(), containsString("HelpAction"));
 		assertThat(SlashActionRepository.get("ignore").toString(), containsString("IgnoreAction"));
-		assertThat(SlashActionRepository.get("jail").toString(), containsString("JailAction"));
 		assertThat(SlashActionRepository.get("msg").toString(), containsString("MessageAction"));
 		assertThat(SlashActionRepository.get("quit").toString(), containsString("QuitAction"));
 		assertThat(SlashActionRepository.get("remove").toString(), containsString("RemoveBuddyAction"));
