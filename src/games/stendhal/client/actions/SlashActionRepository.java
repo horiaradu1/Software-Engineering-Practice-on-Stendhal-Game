@@ -74,7 +74,7 @@ public class SlashActionRepository {
 		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
-		actions.put("inspect", new InspectAction());
+
 		actions.put(INSPECTKILL, new InspectKillAction());
 		actions.put(INSPECTQUEST, new InspectQuestAction());
 		actions.put("invisible", new InvisibleAction());

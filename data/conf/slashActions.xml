@@ -30,6 +30,16 @@
     </parameters>
   </action>
 
+  <action name="inspect">
+    <min_params value="1" />
+    <max_params value="1" />
+    <static_parameters>
+    	<type name="type" value="inspect" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    </parameters>
+  </action>
   
   <!--
   <action name="ban">

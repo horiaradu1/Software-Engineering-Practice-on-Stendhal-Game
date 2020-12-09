@@ -50,7 +50,7 @@ public class InspectActionTest {
 			}
 		};
 		final SlashAction action = SlashActionRepository.get("inspect");
-		assertTrue(action.execute(new String []{"kash"}, null));
+		assertTrue(action.execute(new String []{"kash"}, ""));
 	}
 
 	/**

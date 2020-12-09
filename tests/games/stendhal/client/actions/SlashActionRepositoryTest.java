@@ -43,7 +43,6 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("grumpy").toString(), containsString("GrumpyAction"));
 		assertThat(SlashActionRepository.get("help").toString(), containsString("HelpAction"));
 		assertThat(SlashActionRepository.get("ignore").toString(), containsString("IgnoreAction"));
-		assertThat(SlashActionRepository.get("inspect").toString(), containsString("InspectAction"));
 		assertThat(SlashActionRepository.get("invisible").toString(), containsString("InvisibleAction"));
 		assertThat(SlashActionRepository.get("jail").toString(), containsString("JailAction"));
 		assertThat(SlashActionRepository.get("msg").toString(), containsString("MessageAction"));
