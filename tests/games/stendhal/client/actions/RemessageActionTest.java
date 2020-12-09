@@ -13,20 +13,14 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
-//import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
-//import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-//import games.stendhal.client.ClientSingletonRepository;
-//import games.stendhal.client.MockClientUI;
-//import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
-//import marauroa.common.game.RPAction;
 
 public class RemessageActionTest {
 
@@ -46,43 +40,11 @@ public class RemessageActionTest {
 	@Test
 	public void testExecute() {
 		
-//		final MockClientUI clientUI = new MockClientUI();
-//		ClientSingletonRepository.setUserInterface(clientUI);
-//		final MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
-		
-//		final SlashAction messageAction = SlashActionRepository.get("msg");
-//		messageAction.execute(new String[] {"hello"}, "cool and fun times");
-		
 		final SlashAction action = SlashActionRepository.get("/");
 		assertFalse(action.execute(new String[] {}, "random"));
 		assertFalse(action.execute(null, null));
 	}
 	
-	
-	/**
-	 * Tests for execute.
-	 */
-//	@Test
-//	public void testExecute2() {
-//		
-//		final MockClientUI clientUI = new MockClientUI();
-//		ClientSingletonRepository.setUserInterface(clientUI);
-////		final MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
-//		
-//		final SlashAction messageAction = SlashActionRepository.get("msg");
-//		messageAction.execute(new String[] {"hello"}, "cool and fun times");
-//		
-//		new MockStendhalClient() {
-//			@Override
-//			public void send(final RPAction action) {
-//				assertEquals("tell", action.get("type"));
-//				assertEquals("hello", action.get("text"));
-//			}
-//		};
-//		
-//		final SlashAction action = SlashActionRepository.get("/");
-//		assertTrue(action.execute(new String[] {}, "hello"));
-//	}
 
 	/**
 	 * Tests for getMaximumParameters.
