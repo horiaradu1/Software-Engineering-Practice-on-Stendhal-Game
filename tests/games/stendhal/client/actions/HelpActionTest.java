@@ -22,9 +22,7 @@ import org.junit.Test;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockClientUI;
-import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
-import marauroa.common.game.RPAction;
 
 public class HelpActionTest {
 
@@ -47,11 +45,6 @@ public class HelpActionTest {
 		final MockClientUI clientUI = new MockClientUI();
 		ClientSingletonRepository.setUserInterface(clientUI);
 		
-		new MockStendhalClient() {
-			@Override
-			public void send(final RPAction action) {
-			}
-		};
 		final SlashAction action = SlashActionRepository.get("help");
 		assertTrue(action.execute(new String[] {"hello"}, "random"));
 	}
