@@ -15,6 +15,21 @@
     </parameters>
   </action>
   
+  <action name="alterquest">
+    <min_params value="2" />
+    <max_params value="3" />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+    	<type name="type" value="alterquest" />
+    </static_parameters>
+    <parameters>
+        <param name="target" value="0" />
+        <param name="name" value="1" />
+        <param name="state" value="2" />
+    </parameters>
+  </action>
+
   <action name="inspect">
     <min_params value="1" />
     <max_params value="1" />

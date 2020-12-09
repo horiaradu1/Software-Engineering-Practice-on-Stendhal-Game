@@ -12,11 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
@@ -24,6 +27,14 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 public class AlterQuestActionTest {
+	
+	private static SlashAction action;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+		action = SlashActionRepository.get("alterquest");
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -45,7 +56,6 @@ public class AlterQuestActionTest {
 
 			}
 		};
-		final AlterQuestAction action = new AlterQuestAction();
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, null));
@@ -64,4 +74,21 @@ public class AlterQuestActionTest {
 		assertTrue(action.execute(new String[] { "schnick", "schnick" }, null));
 
 	}
+	
+	/**
+	 * Tests for getMaximumParameters.
+	 */
+	@Test
+	public void testGetMaximumParameters() {
+		assertThat(action.getMaximumParameters(), is(3));
+	}
+
+	/**
+	 * Tests for getMinimumParameters.
+	 */
+	@Test
+	public void testGetMinimumParameters() {
+		assertThat(action.getMinimumParameters(), is(2));
+	}
+
 }
