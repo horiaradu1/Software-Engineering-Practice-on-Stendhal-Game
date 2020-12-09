@@ -101,7 +101,7 @@
     </parameters>
   </action>
   
-    <action name="emote">
+  <action name="emote">
     <aliases>
       <alias value="me" />
     </aliases>
@@ -112,6 +112,20 @@
     </static_parameters>
     <parameters>
       <param name="text" value="remainder" />
+    </parameters>
+  </action>
+
+  <action name="teleport">
+    <min_params value="4" />
+    <max_params value="4" />
+    <static_parameters>
+      <type name="type" value="teleport" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+      <param name="zone" value="1" />
+      <param name="x" value="2" />
+      <param name="y" value="3" />
     </parameters>
   </action>
 

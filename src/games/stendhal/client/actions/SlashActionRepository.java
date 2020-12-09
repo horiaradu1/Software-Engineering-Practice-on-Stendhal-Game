@@ -109,7 +109,6 @@ public class SlashActionRepository {
 		actions.put("support", new SupportAction());
 
 		actions.put("takescreenshot", new ScreenshotAction());
-		actions.put("teleport", new TeleportAction());
 		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
