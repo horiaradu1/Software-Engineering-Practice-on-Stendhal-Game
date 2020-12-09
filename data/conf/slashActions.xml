@@ -129,6 +129,18 @@
     </parameters>
   </action>
 
+  <action name="away">
+    <min_params value="0" />
+    <max_params value="0" />
+    <remainder_not_null />
+    <static_parameters>
+      <type name="type" value="away" />
+    </static_parameters>
+    <parameters>
+      <param name="message" value="remainder" />
+    </parameters>
+  </action>
+
   <!--
   <action name="ban">
     <aliases>
