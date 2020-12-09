@@ -35,7 +35,6 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("adminlevel").toString(), containsString("AdminLevelAction"));
 		assertThat(SlashActionRepository.get("alter").toString(), containsString("AlterAction"));
 		assertThat(SlashActionRepository.get("altercreature").toString(), containsString("AlterCreatureAction"));
-		assertThat(SlashActionRepository.get("alterquest").toString(), containsString("AlterQuestAction"));
 		assertThat(SlashActionRepository.get("answer").toString(), containsString("AnswerAction"));
 		assertThat(SlashActionRepository.get("away").toString(), containsString("AwayAction"));
 		assertThat(SlashActionRepository.get("drop").toString(), containsString("DropAction"));

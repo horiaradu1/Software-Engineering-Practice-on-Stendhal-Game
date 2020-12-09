@@ -65,7 +65,7 @@ public class BaseAction implements SlashAction {
                  }
              } else {
                  int index = Integer.parseInt(value);
-                 if (index > minimumParameters) {
+                 if (index >= minimumParameters) {
                      if ((params.length > index) && (params[index] != null)) {
                          action.put(key, params[index]);
                      }
