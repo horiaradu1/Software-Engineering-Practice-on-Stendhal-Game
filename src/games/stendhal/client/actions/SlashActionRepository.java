@@ -62,7 +62,6 @@ public class SlashActionRepository {
 
 		actions.put("cast", new CastSpellAction());
 
-		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("group", new GroupManagementAction(groupMessage));
 		actions.put("groupmessage", groupMessage);

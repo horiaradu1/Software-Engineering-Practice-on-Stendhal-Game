@@ -141,6 +141,22 @@
     </parameters>
   </action>
 
+  <action name="gag">
+    <min_params value="2" />
+    <max_params value="2" />
+    <remainder_required />
+    <remainder_non_empty />
+    <remainder_not_null />
+    <static_parameters>
+      <type name="type" value="gag" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+      <param name="minutes" value="1" />
+      <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+
   <!--
   <action name="ban">
     <aliases>
