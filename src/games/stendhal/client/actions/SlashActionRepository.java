@@ -74,8 +74,6 @@ public class SlashActionRepository {
 		
 		actions.put("jail", new JailAction());
 
-		actions.put("listproducers", new ListProducersAction());
-
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
 
@@ -108,7 +106,6 @@ public class SlashActionRepository {
 
 		actions.put("takescreenshot", new ScreenshotAction());
 		actions.put("teleportto", new TeleportToAction());
-		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
 
 		actions.put("where", new WhereAction());

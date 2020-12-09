@@ -156,6 +156,30 @@
       <param name="reason" value="remainder" />
     </parameters>
   </action>
+  
+  
+  <action name="tellall">
+  	<min_params value="0" />
+  	<max_params value="0" />
+  	<remainder_required />
+  	<remainder_non_empty />
+  	<remainder_not_null />
+  	<static_parameters>
+  		<type name="type" value="tellall" />
+  	</static_parameters>
+  	<parameters>
+  		<param name="text" value="remainder" />
+  	</parameters>
+  </action>
+  
+  
+  <action name="listproducers">
+  	<min_params value="0" />
+  	<max_params value="0" />
+  	<static_parameters>
+  		<type name="type" value="listproducers" />
+  	</static_parameters>
+  </action>
 
   <!--
   <action name="ban">

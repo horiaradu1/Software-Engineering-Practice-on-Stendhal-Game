@@ -50,7 +50,6 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("supporta").toString(), containsString("SupportAnswerAction"));
 		assertThat(SlashActionRepository.get("support").toString(), containsString("SupportAction"));
 		assertThat(SlashActionRepository.get("teleportto").toString(), containsString("TeleportToAction"));
-		assertThat(SlashActionRepository.get("tellall").toString(), containsString("TellAllAction"));
 		assertThat(SlashActionRepository.get("tell").toString(), containsString("MessageAction"));
 		assertThat(SlashActionRepository.get("where").toString(), containsString("WhereAction"));
 		assertThat(SlashActionRepository.get("who").toString(), containsString("WhoAction"));
