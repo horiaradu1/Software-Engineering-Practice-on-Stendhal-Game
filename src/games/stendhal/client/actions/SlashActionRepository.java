@@ -47,7 +47,6 @@ public class SlashActionRepository {
 		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("adminnote", new AdminNoteAction());
 		actions.put("alter", new AlterAction());
-		actions.put("altercreature", new AlterCreatureAction());
 		actions.put(ALTERKILL, new AlterKillAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
