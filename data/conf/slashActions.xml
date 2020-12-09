@@ -100,6 +100,20 @@
       <param name="target" value="0" />
     </parameters>
   </action>
+  
+    <action name="emote">
+    <aliases>
+      <alias value="me" />
+    </aliases>
+    <min_params value="0" />
+    <max_params value="0" />
+    <static_parameters>
+      <type name="type" value="emote" />
+    </static_parameters>
+    <parameters>
+      <param name="text" value="remainder" />
+    </parameters>
+  </action>
 
   <!--
   <action name="ban">

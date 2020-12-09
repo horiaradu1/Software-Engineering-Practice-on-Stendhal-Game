@@ -78,7 +78,6 @@ public class SlashActionRepository {
 
 		actions.put("listproducers", new ListProducersAction());
 
-		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
 
