@@ -23,7 +23,7 @@
 			<element name="params_not_null" minOccurs="0" maxOccurs="1" ></element>
 			<element name="params_min_length" minOccurs="0" maxOccurs="1" ></element>
 			<element name="static_parameters" type="Q1:sparams" minOccurs="1" maxOccurs="1" ></element>
-			<element name="parameters" type="Q1:params" minOccurs="1" maxOccurs="1" ></element>
+			<element name="parameters" type="Q1:params" minOccurs="0" maxOccurs="1" ></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
 	</complexType>

@@ -28,6 +28,7 @@ import marauroa.common.game.RPAction;
 public class AwayActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
@@ -48,7 +49,7 @@ public class AwayActionTest {
 			}
 		};
 
-		final AwayAction action = new AwayAction();
+		final SlashAction action = SlashActionRepository.get("away");
 		assertTrue(action.execute(null, "schnick"));
 	}
 
@@ -57,7 +58,7 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AwayAction action = new AwayAction();
+		final SlashAction action = SlashActionRepository.get("away");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -66,7 +67,7 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AwayAction action = new AwayAction();
+		final SlashAction action = SlashActionRepository.get("away");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }
