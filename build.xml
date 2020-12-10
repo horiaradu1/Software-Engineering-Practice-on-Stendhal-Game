@@ -419,7 +419,7 @@
 		<delete dir="run_srvr"/>
 	</target>
 
-	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
+	<target name="client_build" depends="init, checkclientxml" description="Build JAR file for Stendhal client">
 		<mkdir dir="${build_client}"/>
 
 		<copy todir="${build_client}/games/stendhal/client">
@@ -543,6 +543,7 @@
 		</copy>
 
 		<copy todir="${build_client_data}/data/conf" file="data/conf/log4j.properties"/>
+		<copy todir="${build_client_data}/data/conf" file="data/conf/slashActions.xml"/>
 		<jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
 
 		<mkdir dir="${build_client_sound_data}"/>
@@ -1151,6 +1152,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	            </sourcefiles>
 	        </structure>
 	    	<xml destfile="${build_tests_report}/jacoco.xml" />
+	    	<html destdir="${buildroot}/build_coverage"/>
 	    </jacoco:report>
 
 	</target>
@@ -1208,6 +1210,15 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<schema namespace="stendhal" file="${config_dir}/shops.xsd"/>
 			<fileset dir="${config_dir}">
 				<filename name="shops.xml"/>
+			</fileset>
+		</schemavalidate>
+	</target>
+	
+	<target name="checkclientxml" description="Verify client XML files are well-formed">
+		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
+			<schema namespace="stendhal" file="${config_dir}/slashActions.xsd"/>
+			<fileset dir="${config_dir}">
+					<filename name="slashActions.xml"/>
 			</fileset>
 		</schemavalidate>
 	</target>

@@ -16,6 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -25,7 +26,10 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+import static games.stendhal.common.constants.Actions.CASTSPELL;
+
+public class CastSpellActionTest {
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -38,28 +42,51 @@ public class AwayActionTest {
 
 	/**
 	 * Tests for execute.
+	 * Test 1: if target is given by name
 	 */
 	@Test
-	public void testExecute() {
+	public void testTargetName() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals(CASTSPELL, action.get("type"));
+				assertEquals("test base item", action.get("baseitem"));
+				assertEquals("spells", action.get("baseslot"));
+				assertEquals("test name", action.get("target"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get("cast");
+		assertTrue(action.execute(new String[] {"test base item", "test name"}, null));
+		
 	}
+	
+	
+	/**
+	 * Test 2: if the target is given by ID
+	 */
+	@Test
+	public void testTargetID() {
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals(CASTSPELL, action.get("type"));
+				assertEquals("test base item", action.get("baseitem"));
+				assertEquals("spells", action.get("baseslot"));
+				assertEquals("#123", action.get("target"));
+			}
+		};
+		final SlashAction action = SlashActionRepository.get("cast");
+		assertTrue(action.execute(new String[] {"test base item", "123"}, null));
+	}
+	
 
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("cast");
+		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	/**
@@ -67,7 +94,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("cast");
+		assertThat(action.getMinimumParameters(), is(2));
 	}
+
 }

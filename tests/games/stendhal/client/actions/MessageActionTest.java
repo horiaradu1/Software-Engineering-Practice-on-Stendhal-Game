@@ -14,6 +14,7 @@ package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -25,7 +26,8 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+public class MessageActionTest {
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -34,6 +36,14 @@ public class AwayActionTest {
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+	}
+	
+	/**
+	 * Tests that the aliases for the MessageAction command point to the same handler
+	 */
+	@Test
+	public void testAliases() {
+		assertEquals(SlashActionRepository.get("msg"), SlashActionRepository.get("tell"));
 	}
 
 	/**
@@ -44,13 +54,15 @@ public class AwayActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals("tell", action.get("type"));
+				assertEquals("kash", action.get("target"));
+				assertEquals("cool and fun times", action.get("text"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get("msg");
+		assertFalse(action.execute(new String []{""}, ""));
+		assertFalse(action.execute(new String []{"kash"}, ""));
+		assertTrue(action.execute(new String []{"kash"}, "cool and fun times"));
 	}
 
 	/**
@@ -58,8 +70,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("msg");
+		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	/**
@@ -67,7 +79,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("msg");
+		assertThat(action.getMinimumParameters(), is(1));
 	}
+
 }

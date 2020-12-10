@@ -203,22 +203,22 @@ Notable contributors:
   · NPCs
 - Andrii Perehuda
   · bug fixer
-  · Coder (new NPCs and items)
+  · Coder (new NPCs and items, slashActions.xsd, slashActions.xml, migration of actions to xml)
 - Jovan Petreski
   · bug fixer
-  · Coder (new items)
+  · Coder (new items, implement migration tests, migration of actions to xml)
 - Jingxuan Chen
   · bug fixer
-  · Coder (new items)
+  · Coder (new items, migration of actions to xml)
 - Horia Radu
   · bug fixer
-  · Coder (new NPCs)
+  · Coder (new NPCs, migration of actions to xml)
 - Amish Shah 
   · bug fixer
-  · Coder (flowerpot-related features)
+  · Coder (flowerpot-related features, implement migration tests, migration of actions to xml)
 - Anna Peake 
   · bug fixer
-  · Coder (flowerpot-related features)
+  · Coder (flowerpot-related features, migration of actions to xml)
 - Kalina Shkenderova  
   · bug fixer
-  · Coder (flowerpot-related features)
+  · Coder (flowerpot-related features, implement migration tests)

@@ -25,7 +25,8 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+public class StoreMessageActionTest {
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -34,6 +35,14 @@ public class AwayActionTest {
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
+	}
+	
+	/**
+	 * Tests that the aliases for the MessageAction command point to the same handler
+	 */
+	@Test
+	public void testAliases() {
+		assertEquals(SlashActionRepository.get("msg"), SlashActionRepository.get("tell"));
 	}
 
 	/**
@@ -44,13 +53,13 @@ public class AwayActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals("storemessage", action.get("type"));
+				assertEquals("kash", action.get("target"));
+				assertEquals("cool and fun times", action.get("text"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertTrue(action.execute(new String []{"kash"}, "cool and fun times"));
 	}
 
 	/**
@@ -58,8 +67,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	/**
@@ -67,7 +76,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("storemessage");
+		assertThat(action.getMinimumParameters(), is(1));
 	}
+
 }

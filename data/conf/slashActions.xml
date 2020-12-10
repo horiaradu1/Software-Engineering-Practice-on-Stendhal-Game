@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ./slashActions.xsd ">
+
+  <action name="ban">
+    <min_params value="2" />
+    <max_params value="2" />
+    <static_parameters>
+    	<type name="type" value="ban" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    	<param name="hours" value="1" />
+    	<param name="reason" value="remainder" />
+    </parameters>
+  </action>
+  
+  <action name="alterquest">
+    <min_params value="2" />
+    <max_params value="3" />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+    	<type name="type" value="alterquest" />
+    </static_parameters>
+    <parameters>
+        <param name="target" value="0" />
+        <param name="name" value="1" />
+        <param name="state" value="2" />
+    </parameters>
+  </action>
+
+  <action name="inspect">
+    <min_params value="1" />
+    <max_params value="1" />
+    <static_parameters>
+    	<type name="type" value="inspect" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    </parameters>
+  </action>
+
+  <action name="grumpy">
+    <min_params value="0" />
+    <max_params value="0" />
+    <remainder_non_empty />
+    <static_parameters>
+     <type name="type" value="grumpy" />
+    </static_parameters>
+    <parameters>
+     <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+
+  <action name="altercreature">
+    <min_params value="2" />
+    <max_params value="2" />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+    	<type name="type" value="altercreature" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    	<param name="text" value="1" />
+    </parameters>
+  </action>
+
+  <action name="inspectquest">
+    <min_params value="2" />
+    <max_params value="2" />
+    <static_parameters>
+    	<type name="type" value="inspectquest" />
+    </static_parameters>
+    <parameters>
+    	<param name="target" value="0" />
+    	<param name="quest_slot" value="1" />
+    </parameters>
+  </action>
+  
+ <action name="invisible">
+    <min_params value="0" />
+    <max_params value="0" />
+    <static_parameters>
+     <type name="type" value="invisible" />
+    </static_parameters>
+  </action>
+  
+  <action name="challenge">
+    <min_params value="1" />
+    <max_params value="1" />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+      <type name="type" value="challenge" />
+      <param name="action" value="open" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+    </parameters>
+  </action>
+  
+  <action name="emote">
+    <aliases>
+      <alias value="me" />
+    </aliases>
+    <min_params value="0" />
+    <max_params value="0" />
+    <static_parameters>
+      <type name="type" value="emote" />
+    </static_parameters>
+    <parameters>
+      <param name="text" value="remainder" />
+    </parameters>
+  </action>
+
+  <action name="teleport">
+    <min_params value="4" />
+    <max_params value="4" />
+    <static_parameters>
+      <type name="type" value="teleport" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+      <param name="zone" value="1" />
+      <param name="x" value="2" />
+      <param name="y" value="3" />
+    </parameters>
+  </action>
+
+  <action name="away">
+    <min_params value="0" />
+    <max_params value="0" />
+    <remainder_not_null />
+    <static_parameters>
+      <type name="type" value="away" />
+    </static_parameters>
+    <parameters>
+      <param name="message" value="remainder" />
+    </parameters>
+  </action>
+
+  <action name="gag">
+    <min_params value="2" />
+    <max_params value="2" />
+    <remainder_required />
+    <remainder_non_empty />
+    <remainder_not_null />
+    <static_parameters>
+      <type name="type" value="gag" />
+    </static_parameters>
+    <parameters>
+      <param name="target" value="0" />
+      <param name="minutes" value="1" />
+      <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+
+  <action name="tellall">
+  	<min_params value="0" />
+  	<max_params value="0" />
+  	<remainder_not_null />
+  	<static_parameters>
+  		<type name="type" value="tellall" />
+  	</static_parameters>
+  	<parameters>
+  		<param name="text" value="remainder" />
+  	</parameters>
+  </action>
+
+  <action name="listproducers">
+  	<min_params value="0" />
+  	<max_params value="0" />
+  	<static_parameters>
+  		<type name="type" value="listproducers" />
+  	</static_parameters>
+  </action>
+
+  <action name="jail">
+  	<min_params value="2" />
+  	<max_params value="2" />
+  	<remainder_required />
+  	<remainder_non_empty />
+  	<remainder_not_null />
+  	<static_parameters>
+  		<type name="type" value="jail" />
+  	</static_parameters>
+  	<parameters>
+  		<param name="target" value="0" />
+  		<param name="minutes" value="1" />
+  		<param name="reason" value="remainder" />
+  	</parameters>
+  </action>
+
+  <!--
+  <action name="ban">
+    <aliases>
+        <alias value="ban_alias" />
+    </aliases>
+    <min_params value="2" />
+    <max_params value="2" />
+    <remainder_required />
+    <remainder_non_empty />
+    <remainder_not_null />
+    <params_not_null />
+    <params_min_length />
+    <static_parameters>
+        <type name="type" value="ban" />
+        <param name="smth" value="val" />
+    </static_parameters>
+    <parameters>
+        <param name="target" value="0" />
+        <param name="hours" value="1" />
+        <param name="reason" value="remainder" />
+    </parameters>
+  </action>
+  -->
+</actions>

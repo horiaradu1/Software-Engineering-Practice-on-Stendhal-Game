@@ -25,7 +25,10 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+import static games.stendhal.common.constants.Actions.INSPECTKILL;
+
+public class InspectKillActionTest {
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -38,28 +41,56 @@ public class AwayActionTest {
 
 	/**
 	 * Tests for execute.
+	 * Test 1: if remainder is null or empty string
 	 */
 	@Test
-	public void testExecute() {
+	public void testRemainderNull() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals(INSPECTKILL, action.get("type"));
+				assertEquals("myTarget", action.get("target"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get(INSPECTKILL);
+		assertTrue(action.execute(new String[] {"myTarget"}, null));
+		
+		// Same result for empty string
+		assertTrue(action.execute(new String[] {"myTarget"}, ""));
+		assertTrue(action.execute(new String[] {"myTarget"}, "    "));
 	}
-
+	
+	
+	/**
+	 * Test 2: if remainder is a non-empty string.
+	 * Only 1 whitespace between words should be left
+	 */
+	@Test
+	public void testRemainderNotNull() {
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals(INSPECTKILL, action.get("type"));
+				assertEquals("myTarget", action.get("target"));
+				
+				assertEquals("test for creature 1.1", action.get("creature"));
+			}
+		};
+		final SlashAction action = SlashActionRepository.get(INSPECTKILL);
+		assertTrue(action.execute(new String[] {"myTarget"}, "test for creature 1.1"));
+		
+		// Check for different inputs. Only 1 whitespace should be left after calling execute function
+		assertTrue(action.execute(new String[] {"myTarget"}, "test    for    creature 1.1"));
+		assertTrue(action.execute(new String[] {"myTarget"}, "test    for    creature    1.1"));
+	}
+	
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get(INSPECTKILL);
+		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	/**
@@ -67,7 +98,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get(INSPECTKILL);
+		assertThat(action.getMinimumParameters(), is(1));
 	}
+
 }

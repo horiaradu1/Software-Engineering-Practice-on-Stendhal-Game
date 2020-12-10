@@ -14,12 +14,13 @@ package games.stendhal.client.actions;
 
 import static games.stendhal.common.constants.Actions.ALTERKILL;
 import static games.stendhal.common.constants.Actions.INSPECTKILL;
-import static games.stendhal.common.constants.Actions.INSPECTQUEST;
 import static games.stendhal.common.constants.Actions.REMOVEDETAIL;
 import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -45,14 +46,11 @@ public class SlashActionRepository {
 		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("adminnote", new AdminNoteAction());
 		actions.put("alter", new AlterAction());
-		actions.put("altercreature", new AlterCreatureAction());
 		actions.put(ALTERKILL, new AlterKillAction());
-		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
-		actions.put("away", new AwayAction());
 
-		actions.put("ban", new BanAction());
+//		actions.put("ban", new BanAction());   
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
@@ -64,25 +62,16 @@ public class SlashActionRepository {
 
 		actions.put("cast", new CastSpellAction());
 
-		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("group", new GroupManagementAction(groupMessage));
 		actions.put("groupmessage", groupMessage);
-		actions.put("grumpy", new GrumpyAction());
 
 		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
-		actions.put("inspect", new InspectAction());
+
 		actions.put(INSPECTKILL, new InspectKillAction());
-		actions.put(INSPECTQUEST, new InspectQuestAction());
-		actions.put("invisible", new InvisibleAction());
 
-		actions.put("jail", new JailAction());
-
-		actions.put("listproducers", new ListProducersAction());
-
-		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
 
@@ -114,9 +103,7 @@ public class SlashActionRepository {
 		actions.put("support", new SupportAction());
 
 		actions.put("takescreenshot", new ScreenshotAction());
-		actions.put("teleport", new TeleportAction());
 		actions.put("teleportto", new TeleportToAction());
-		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
 
 		actions.put("where", new WhereAction());
@@ -130,13 +117,30 @@ public class SlashActionRepository {
 		actions.put("movecont", new MoveContinuousAction());
 
 		// PvP challenge actions
-		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
 
 		actions.put(COMBAT_KARMA, new SetCombatKarmaAction());
 
 		// allows players to remove the detail layer manually
 		actions.put(REMOVEDETAIL, new RemoveDetailAction());
+		
+		
+		try {
+			final ActionsXMLLoader loader = new ActionsXMLLoader();
+			
+			final Map<String, BaseAction> baseActions = loader.load(new URI("/data/conf/slashActions.xml"));
+			
+			for (Map.Entry<String, BaseAction> entry : baseActions.entrySet()) {
+				 String name = entry.getKey();
+				 BaseAction action = entry.getValue();
+				 actions.put(name, action);
+				 for (String alias : action.getAliases()) {
+					 actions.put(alias, action);
+				 }
+			}
+		} catch (final Exception e) {
+			// LOGGER.error("SlashActions.xml could not be loaded", e);
+		}
 	}
 
 	/**

@@ -1,6 +1,29 @@
 Changelog
 ---------
 ---------
+1.37uom
+10.12.2020
+*code*
+- migrated slashActions to XML Configuration
+- created BaseAction and XMLLoader for action
+- wrote tests to raise test coverage
+- migrated actions:
+  - BanAction
+  - AlterquestAction
+  - InspectAction
+  - GrumpyAction
+  - AlterCreatureAction  
+  - TeleportAction  
+  - AwayAction  
+  - CreateChallengeAction  
+  - EmoteAction  
+  - GagAction
+  - InspectQuestAction
+  - InvisibleAction
+  - JailAction
+  - ListProducersAction
+  - TellAllAction
+
 1.36uom
 18.11.2020
 *world*

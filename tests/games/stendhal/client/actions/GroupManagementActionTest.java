@@ -25,7 +25,8 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+public class GroupManagementActionTest {
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
@@ -40,17 +41,33 @@ public class AwayActionTest {
 	 * Tests for execute.
 	 */
 	@Test
-	public void testExecute() {
+	public void testExecuteWithGivenParamMessage() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		final SlashAction action = SlashActionRepository.get("group");
+		assertTrue(action.execute(new String[] {"message"}, "random"));
+	}
+	
+	
+	/**
+	 * Tests for execute.
+	 */
+	@Test
+	public void testExecuteWithoutGivenParamMessage() {
+		
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals("group_management", action.get("type"));
+				assertEquals("hello", action.get("action"));
+				assertEquals("random", action.get("params"));
+			}
+		};
+		final SlashAction action = SlashActionRepository.get("group");
+		assertTrue(action.execute(new String[] {"hello"}, "random"));
 	}
 
 	/**
@@ -58,8 +75,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("group");
+		assertThat(action.getMaximumParameters(), is(1));
 	}
 
 	/**
@@ -67,7 +84,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		final SlashAction action = SlashActionRepository.get("group");
+		assertThat(action.getMinimumParameters(), is(1));
 	}
+
 }

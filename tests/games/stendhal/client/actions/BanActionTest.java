@@ -25,10 +25,14 @@ import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
+public class BanActionTest {
+	
+	private static SlashAction action;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		SlashActionRepository.register();
+		action = SlashActionRepository.get("ban");
 	}
 
 	@After
@@ -41,25 +45,25 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testExecute() {
+
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals("ban", action.get("type"));
+				assertEquals("schnick", action.get("target"));
+				assertEquals("schneck", action.get("hours"));
+				assertEquals("schnack", action.get("reason"));
 			}
 		};
-
-		final SlashAction action = SlashActionRepository.get("away");
-		assertTrue(action.execute(null, "schnick"));
+		assertTrue(action.execute(new String[] {"schnick", "schneck"}, "schnack"));
 	}
-
+	
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMaximumParameters(), is(0));
+		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	/**
@@ -67,7 +71,7 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SlashAction action = SlashActionRepository.get("away");
-		assertThat(action.getMinimumParameters(), is(0));
+		assertThat(action.getMinimumParameters(), is(2));
 	}
+
 }
